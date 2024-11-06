@@ -2,9 +2,13 @@ package game;
 
 import inventory.Inventory;
 import location.Location;
+import location.battleLocation.BattleLocation;
 import location.battleLocation.Cave;
 import location.battleLocation.Forest;
 import location.battleLocation.River;
+import location.monsters.Obstacle;
+import location.monsters.Vampire;
+import location.monsters.Zombie;
 import location.normalLocation.SafeHouse;
 import location.normalLocation.ToolStore;
 import player.Player;
@@ -18,7 +22,6 @@ public class Game {
 
     public void start(){
         Scanner scanner = new Scanner(System.in);
-
 
         System.out.println("Welcome to the Adventure Game!");
         System.out.println("================================");
@@ -55,15 +58,15 @@ public class Game {
                     int battleChoice = scanner.nextInt();
                     switch (battleChoice){
                         case 1:
-                            Forest forest = new Forest(player, "Forest");
+                            BattleLocation forest = new Forest(player, "Forest");
                             forest.onLocation();
                             break;
                         case 2:
-                            Cave cave = new Cave(player, "Cave");
+                            Location cave = new Cave(player, "Cave");
                             cave.onLocation();
                             break;
                         case 3:
-                            River river = new River(player, "River");
+                            Location river = new River(player, "River");
                             river.onLocation();
                             break;
                         case 4:
