@@ -1,6 +1,7 @@
-package location.NormalLocation;
+package location.normalLocation;
 
 import location.Location;
+import player.Player;
 
 public abstract class NormalLocation extends Location {
 
@@ -8,8 +9,4 @@ public abstract class NormalLocation extends Location {
         super(player, name);
     }
 
-    @Override
-    public boolean onLocation() {
-        return super.onLocation();
-    }
 }

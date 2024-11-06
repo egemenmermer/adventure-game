@@ -1,6 +1,8 @@
 package player;
 
 import inventory.Inventory;
+import player.characters.Archer;
+import player.characters.Knight;
 import player.characters.Samurai;
 
 import java.util.Scanner;
@@ -13,12 +15,13 @@ public class Player {
     private String name;
     private String playerClass;
 
-    public Player(Inventory inventory, int damage, int health, int money, String name) {
+    public Player(Inventory inventory, int damage, int health, int money,String name, String playerClass) {
         this.inventory = inventory;
         this.damage = damage;
         this.health = health;
         this.money = money;
         this.name = name;
+        this.playerClass = playerClass;
     }
 
     public Inventory getInventory() {
@@ -69,45 +72,38 @@ public class Player {
         this.playerClass = playerClass;
     }
 
-    public void selectCharacter(){
+    public Player selectCharacter(){
+        Inventory inventory = new Inventory();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter your name: ");
         this.name = scanner.nextLine();
-        boolean validChoice = false;
+
+        Player chosenCharacter = null;
 
         System.out.println("Choose a character:");
         System.out.println("1- Samurai, Damage: 5, Health: 21, Money: 15");
         System.out.println("2- Archer, Damage: 7, Health: 18, Money: 20");
         System.out.println("3- Knight, Damage: 8, Health: 24, Money: 5");
-        int choice = scanner.nextInt();
 
+        int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                Samurai samurai = new Samurai(inventory,5,21,15);
+                chosenCharacter = new Samurai(this.inventory, 5, 21, 15, this.name ,"Samurai");
                 break;
-
             case 2:
-                this.playerClass = "Archer";
-                this.damage = 7;
-                this.health = 18;
-                this.money = 20;
-                validChoice = true;
+                chosenCharacter = new Archer(this.inventory, 7, 18, 20, this.name, "Archer");
                 break;
-
             case 3:
-                this.playerClass = "Knight";
-                this.damage = 8;
-                this.health = 24;
-                this.money = 50;
-                validChoice = true;
+                chosenCharacter = new Knight(this.inventory, 8, 24, 5, this.name, "Knight");
                 break;
-
             default:
                 System.out.println("Invalid choice. Please select a valid character.");
-                break;
+                return selectCharacter();
         }
-        System.out.println("Adventurer " + this.getName() + " selected the " + this.playerClass + " class.");
-        System.out.println("Attributes - Damage: " + this.getDamage() + " Health: " + this.getHealth() + " Money: " + this.getMoney() );
+        System.out.println("Adventurer " + chosenCharacter.getName() + " selected the " + chosenCharacter.getPlayerClass() + " class.");
+        System.out.println("Attributes - Damage: " + chosenCharacter.getDamage() + " Health: " + chosenCharacter.getHealth() + " Money: " + chosenCharacter.getMoney() );
+        System.out.println("=========================================================");
 
+        return chosenCharacter;
     }
 }

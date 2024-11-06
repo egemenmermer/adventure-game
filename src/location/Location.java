@@ -1,11 +1,14 @@
 package location;
 
+import player.Player;
+
 public abstract class Location {
-    Player player;
-    String name;
+    private Player player;
+    private String name;
 
 
-    public Location(Player player, String name) {
+
+    public  Location(Player player, String name) {
         this.player = player;
         this.name = name;
     }
