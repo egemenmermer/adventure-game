@@ -62,7 +62,7 @@ public class Game {
                             forest.onLocation();
                             break;
                         case 2:
-                            Location cave = new Cave(player, "Cave");
+                            Location cave = new Cave(player, "Cave", );
                             cave.onLocation();
                             break;
                         case 3:
