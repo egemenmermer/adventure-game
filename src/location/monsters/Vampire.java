@@ -5,9 +5,9 @@ import player.Player;
 import java.util.Scanner;
 
 public class Vampire extends Obstacle{
-    private int damage = 4;
-    private int health = 14;
-    private int gold = 7;
+    private int damage;
+    private int health;
+    private int gold;
 
     public Vampire(int damage, int health, int gold) {
         this.damage = damage;

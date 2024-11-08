@@ -6,6 +6,7 @@ import location.battleLocation.BattleLocation;
 import location.battleLocation.Cave;
 import location.battleLocation.Forest;
 import location.battleLocation.River;
+import location.monsters.Bear;
 import location.monsters.Obstacle;
 import location.monsters.Vampire;
 import location.monsters.Zombie;
@@ -49,8 +50,8 @@ public class Game {
                     toolStore.onLocation();
                     break;
                 case 3:
-                    System.out.println("1- Forest (Easy)");
-                    System.out.println("2- Cave (Medium)");
+                    System.out.println("1- Cave (Easy)");
+                    System.out.println("2- Forest (Medium)");
                     System.out.println("3- River (Hard)");
                     System.out.println("4- Go back to main menu");
 
@@ -58,15 +59,18 @@ public class Game {
                     int battleChoice = scanner.nextInt();
                     switch (battleChoice){
                         case 1:
-                            BattleLocation forest = new Forest(player, "Forest");
-                            forest.onLocation();
-                            break;
-                        case 2:
-                            Location cave = new Cave(player, "Cave", );
+                            Zombie zombie = new Zombie(3,10,4);
+                            Location cave = new Cave(player, "Cave", zombie );
                             cave.onLocation();
                             break;
+                        case 2:
+                            Vampire vampire = new Vampire(4,14,7);
+                            BattleLocation forest = new Forest(player, "Forest", vampire);
+                            forest.onLocation();
+                            break;
                         case 3:
-                            Location river = new River(player, "River");
+                            Bear bear  = new Bear(7,20,12);
+                            Location river = new River(player, "River", bear);
                             river.onLocation();
                             break;
                         case 4:

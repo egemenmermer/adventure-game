@@ -1,9 +1,9 @@
 package location.monsters;
 
 public class Zombie extends Obstacle{
-    private int damage = 7;
-    private int health = 20;
-    private int gold = 12;
+    private int damage;
+    private int health;
+    private int gold;
 
 
     public Zombie(int damage, int health, int gold) {

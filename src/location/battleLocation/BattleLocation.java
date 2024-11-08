@@ -17,15 +17,15 @@ public abstract class BattleLocation extends Location {
     @Override
     public boolean onLocation() {
         System.out.println("You've entered " + this.getName());
-        return combat();  // Start combat with the obstacle
+        combat();
+        return true;
     }
 
     public void combat(){
         Scanner in = new Scanner(System.in);
         System.out.println("==============================");
-        int monsterCount = (int) ((Math.random() * 3) + 1);
+        int monsterCount = obstacle.obstacleNumber();
         int initialCount = monsterCount;
-        System.out.println(monsterCount);
         boolean isFighting = true;
 
         System.out.println("Be careful! There are " + monsterCount + " vampires ahead!");
@@ -38,22 +38,22 @@ public abstract class BattleLocation extends Location {
         switch(option){
             case 1:
                 while (isFighting && monsterCount > 0){
-                    this.health = 14;
-                    while(this.health > 0){
+                    this.obstacle.setHealth(obstacle.getInitialHealth());
+                    while(this.obstacle.getHealth() > 0){
 
                         //Player Attack
-                        this.health -= getPlayer().getDamage();
-                        System.out.println("Good hit! Remaining health of the opponent: " + this.health);
-                        if (this.health <= 0){
-                            System.out.println("You defeated a vampire!");
+                        this.obstacle.getHealth() -= getPlayer().getDamage();
+                        System.out.println("Good hit! Remaining health of the opponent: " + this.obstacle.getHealth());
+                        if (this.obstacle.getHealth() <= 0){
+                            System.out.println("You defeated a " + this.obstacle.get );
                             monsterCount--;
                             break;
                         }
 
                         //Vampire Attack
                         System.out.println("Vampire is attacking!");
-                        this.getPlayer().setHealth(this.getPlayer().getHealth() - this.damage);
-                        System.out.println("Your remaining health: " + this.player.getHealth());
+                        this.getPlayer().setHealth(this.getPlayer().getHealth() - obstacle.getDamage());
+                        System.out.println("Your remaining health: " + this.getPlayer().getHealth());
                         if (this.getPlayer().getHealth() <= 0){
                             System.out.println("You have been defeated!");
                             isFighting = false;
@@ -61,11 +61,11 @@ public abstract class BattleLocation extends Location {
                         }
                     }
                 }
-                if(player.getHealth() > 0 && monsterCount == 0){
+                if(getPlayer().getHealth() > 0 && monsterCount == 0){
                     System.out.println("You defeated all of the monsters!");
                     this.getPlayer().getInventory().setFirewood(true);
-                    this.getPlayer().setMoney(getPlayer().getMoney() + (this.gold * initialCount));
-                    System.out.println("Gold earned: " + (this.gold * initialCount));
+                    this.getPlayer().setMoney(getPlayer().getMoney() + (this.obstacle.getGold() * initialCount));
+                    System.out.println("Gold earned: " + (this.obstacle.getGold() * initialCount));
                 }
                 break;
             case 2:

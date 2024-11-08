@@ -1,14 +1,50 @@
 package location.monsters;
 
 public class Obstacle {
+    private int initialHealth;
     private int obstacleNumber;
+    private int health;
+    private int damage;
+    private int gold;
 
-    public Obstacle() {
-        // Initialize obstacle count or other properties here if needed
-        this.obstacleNumber = (int) (Math.random() * 3) + 1;  // Randomly set the number of obstacles (1-3)
+    public Obstacle(int health, int damage, int gold) {
+        this.initialHealth = initialHealth;
+        this.health = health;
+        this.damage = damage;
+        this.gold = gold;
+    }
+    public static int obstacleNumber() {
+        return (int) (Math.random() * 3) + 1;
     }
 
-    public int obstacleNumber() {
-        return this.obstacleNumber;
+    public int getInitialHealth() {
+        return initialHealth;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+    public void resetHealth() {
+        this.health = initialHealth;
     }
 }
