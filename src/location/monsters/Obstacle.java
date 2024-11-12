@@ -1,6 +1,6 @@
 package location.monsters;
 
-public class Obstacle {
+public abstract class Obstacle {
     private int initialHealth;
     private int obstacleNumber;
     private int health;
@@ -8,18 +8,15 @@ public class Obstacle {
     private int gold;
 
     public Obstacle(int health, int damage, int gold) {
-        this.initialHealth = initialHealth;
+        this.initialHealth = health;
         this.health = health;
         this.damage = damage;
         this.gold = gold;
     }
 
+
     public static int obstacleNumber() {
         return (int) (Math.random() * 3) + 1;
-    }
-
-    public int getInitialHealth() {
-        return initialHealth;
     }
 
     public int getHealth() {
@@ -48,4 +45,5 @@ public class Obstacle {
     public void resetHealth() {
         this.health = initialHealth;
     }
+    public abstract String getName();
 }

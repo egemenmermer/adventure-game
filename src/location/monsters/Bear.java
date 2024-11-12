@@ -1,14 +1,17 @@
 package location.monsters;
 
 public class Bear extends Obstacle{
-    private String monsterName;
     private  int damage = 3;
     private  int health = 20;
     private  int gold = 12;
 
-    public Bear(String name, int damage, int health, int gold) {
-        super(damage,health,gold);
-        this.monsterName = "Bear";
+    public Bear(int damage, int health, int gold) {
+        super(health,damage,gold);
+    }
+
+    @Override
+    public String getName(){
+        return "Bear";
     }
 
     public int getDamage() {

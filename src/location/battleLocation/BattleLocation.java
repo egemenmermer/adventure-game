@@ -21,62 +21,74 @@ public abstract class BattleLocation extends Location {
         return true;
     }
 
-    public void combat(){
-        Scanner in = new Scanner(System.in);
+    public void combat() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("==============================");
         int monsterCount = obstacle.obstacleNumber();
         int initialCount = monsterCount;
         boolean isFighting = true;
-
-        System.out.println("Be careful! There are " + monsterCount + " vampires ahead!");
+        System.out.println("Be careful! There are " + monsterCount + " " + this.obstacle.getName() + " ahead!"); //which monster
         System.out.println("What do you want to do?");
         System.out.println("========================");
         System.out.println("1- Attack!");
         System.out.println("2- Try to run! (50% chance)");
-        int option = in.nextInt();
+        int option = sc.nextInt();
 
-        switch(option){
-            case 1:
-                while (isFighting && monsterCount > 0){
-                    this.obstacle.setHealth(obstacle.getInitialHealth());
-                    while(this.obstacle.getHealth() > 0){
+        if (option == 1) {
+            while (isFighting && monsterCount > 0) {
+                obstacle.resetHealth();
 
-                        //Player Attack
-                        this.obstacle.getHealth() -= getPlayer().getDamage();
-                        System.out.println("Good hit! Remaining health of the opponent: " + this.obstacle.getHealth());
-                        if (this.obstacle.getHealth() <= 0){
-                            System.out.println("You defeated a " + this.obstacle. );
-                            monsterCount--;
-                            break;
-                        }
+                while (this.obstacle.getHealth() == 0) {
+                    // Player Attack
+                    this.obstacle.setHealth(obstacle.getHealth() - getPlayer().getDamage());
+                    System.out.println("Good hit! Remaining health of the " + obstacle.getName() + ": " + obstacle.getHealth());
 
-                        //Vampire Attack
-                        System.out.println("Vampire is attacking!");
-                        this.getPlayer().setHealth(this.getPlayer().getHealth() - obstacle.getDamage());
-                        System.out.println("Your remaining health: " + this.getPlayer().getHealth());
-                        if (this.getPlayer().getHealth() <= 0){
-                            System.out.println("You have been defeated!");
-                            isFighting = false;
-                            break;
-                        }
+                    if (obstacle.getHealth() <= 0) {
+                        System.out.println("You defeated a " + obstacle.getName() + "!");
+                        monsterCount--;
+                        break;
+                    }
+
+                    // Monster Attack
+                    System.out.println(obstacle.getName() + " is attacking!");
+                    getPlayer().setHealth(getPlayer().getHealth() - obstacle.getDamage());
+                    System.out.println("Your remaining health: " + getPlayer().getHealth());
+
+                    if (getPlayer().getHealth() <= 0) {
+                        System.out.println("You have been defeated!");
+                        isFighting = false;
+                        break;
                     }
                 }
-                if(getPlayer().getHealth() > 0 && monsterCount == 0){
-                    System.out.println("You defeated all of the monsters!");
-                    this.getPlayer().getInventory().setFirewood(true);
-                    this.getPlayer().setMoney(getPlayer().getMoney() + (this.obstacle.getGold() * initialCount));
-                    System.out.println("Gold earned: " + (this.obstacle.getGold() * initialCount));
+            }
+
+
+            if (getPlayer().getHealth() > 0 && monsterCount == 0) {
+                System.out.println("You defeated all of the " + obstacle.getName() + "(s)!");
+                getPlayer().setMoney(getPlayer().getMoney() + (obstacle.getGold() * initialCount));
+                System.out.println("Gold earned: " + (obstacle.getGold() * initialCount));
+
+
+                if (this.getName().equals("Forest")) {
+                    getPlayer().getInventory().setFirewood(true);
+                    System.out.println("You found some firewood!");
+                } else if (this.getName().equals("Cave")) {
+                    getPlayer().getInventory().setFood(true);
+                    System.out.println("You found some food!");
+                } else if (this.getName().equals("River")) {
+                    getPlayer().getInventory().setWater(true);
+                    System.out.println("You found some water!");
                 }
-                break;
-            case 2:
-                if(Math.random() < 0.5){
-                    System.out.println("You managed to escape!");
-                }else {
-                    System.out.println("You couldn't escape!");
-                    this.getPlayer().setHealth(this.getPlayer().getHealth() - this.damage);
-                    break;
-                }
-        }
+            }
+        } else if (option == 2) {
+
+            if (Math.random() < 0.5) {
+                System.out.println("You managed to escape!");
+            } else {
+                System.out.println("You couldn't escape! The " + obstacle.getName() + " attacks you as you try to flee.");
+                this.getPlayer().setHealth(getPlayer().getHealth() - this.obstacle.getDamage());
+                System.out.println("Your remaining health: " + getPlayer().getHealth());
+            }
         }
     }
 }

@@ -4,12 +4,15 @@ public class Zombie extends Obstacle{
     private int damage;
     private int health;
     private int gold;
-    private String monsterName;
 
 
     public Zombie(int damage, int health, int gold) {
-        super(damage, health, gold);
-        this.monsterName = "Zombie";
+        super(health, damage, gold);
+    }
+
+    @Override
+    public String getName(){
+        return "Zombie";
     }
 
     public int getDamage() {

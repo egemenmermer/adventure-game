@@ -8,11 +8,13 @@ public class Vampire extends Obstacle{
     private int damage;
     private int health;
     private int gold;
-    private String monsterName;
 
     public Vampire(int damage, int health, int gold) {
-        super(damage, health, gold);
-        this.monsterName = "Vampire";
+        super(health, damage, gold);
+    }
+    @Override
+    public String getName(){
+        return "Vampire";
     }
 
     public int getDamage() {
@@ -38,5 +40,6 @@ public class Vampire extends Obstacle{
     public void setGold(int gold) {
         this.gold = gold;
     }
+
 
 }
