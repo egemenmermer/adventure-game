@@ -12,6 +12,7 @@ public abstract class Obstacle {
         this.health = health;
         this.damage = damage;
         this.gold = gold;
+        System.out.println("Obstacle created with health: " + this.health);
     }
 
 
@@ -44,6 +45,7 @@ public abstract class Obstacle {
     }
     public void resetHealth() {
         this.health = initialHealth;
+        System.out.println("Health reset to initial value: " + this.health);
     }
     public abstract String getName();
 }
