@@ -8,11 +8,11 @@ public class Vampire extends Obstacle{
     private int damage;
     private int health;
     private int gold;
+    private String monsterName;
 
     public Vampire(int damage, int health, int gold) {
-        this.damage = damage;
-        this.health = health;
-        this.gold = gold;
+        super(damage, health, gold);
+        this.monsterName = "Vampire";
     }
 
     public int getDamage() {

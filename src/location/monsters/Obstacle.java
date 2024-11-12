@@ -13,6 +13,7 @@ public class Obstacle {
         this.damage = damage;
         this.gold = gold;
     }
+
     public static int obstacleNumber() {
         return (int) (Math.random() * 3) + 1;
     }

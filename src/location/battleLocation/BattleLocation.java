@@ -45,7 +45,7 @@ public abstract class BattleLocation extends Location {
                         this.obstacle.getHealth() -= getPlayer().getDamage();
                         System.out.println("Good hit! Remaining health of the opponent: " + this.obstacle.getHealth());
                         if (this.obstacle.getHealth() <= 0){
-                            System.out.println("You defeated a " + this.obstacle.get );
+                            System.out.println("You defeated a " + this.obstacle. );
                             monsterCount--;
                             break;
                         }
