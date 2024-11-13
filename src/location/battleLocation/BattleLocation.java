@@ -43,9 +43,10 @@ public abstract class BattleLocation extends Location {
                     System.out.println(monsterCount);
                     System.out.println(this.obstacle.getHealth());
                     System.out.println(this.getPlayer().getName());
+                    System.out.println(this.getPlayer().getHealth());
 
                     while (this.obstacle.getHealth() > 0 && this.getPlayer().getHealth() > 0) {
-                        // Player Attack
+                        //Player Attack
                         this.obstacle.setHealth(obstacle.getHealth() - getPlayer().getDamage());
                         System.out.println("You attack! " + obstacle.getName() + " health is now " + obstacle.getHealth());
 
@@ -55,6 +56,7 @@ public abstract class BattleLocation extends Location {
                             break;
                         }
 
+                        //Monster Attack
                         System.out.println(obstacle.getName() + " attacks you!");
                         getPlayer().setHealth(getPlayer().getHealth() - obstacle.getDamage());
                         System.out.println("Your remaining health: " + getPlayer().getHealth());

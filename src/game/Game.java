@@ -27,8 +27,12 @@ public class Game {
         System.out.println("Welcome to the Adventure Game!");
         System.out.println("================================");
 
-        Player player = new Player(inventory, 0,0,0,null ,null);
+        Player player = new Player(null, 0, 0, 0, null, null);
         this.player = player.selectCharacter();
+        if (this.player == null) {
+            System.out.println("Failed to select a character. Exiting.");
+            return;
+        }
 
 
         boolean isGameRunning = true;
@@ -87,7 +91,5 @@ public class Game {
                     break;
             }
         }
-
-
     }
 }
