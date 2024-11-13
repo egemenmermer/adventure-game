@@ -6,7 +6,7 @@ public class Bear extends Obstacle{
     private  int gold = 12;
 
     public Bear(int damage, int health, int gold) {
-        super(health,damage,gold);
+        super(damage,health,gold);
     }
 
     @Override

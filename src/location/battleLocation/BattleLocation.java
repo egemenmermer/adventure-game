@@ -34,15 +34,19 @@ public abstract class BattleLocation extends Location {
         System.out.println("2- Try to run! (50% chance)");
         int option = sc.nextInt();
 
+
         switch (option) {
             case 1:
                 while (isFighting && monsterCount > 0) {
-                    obstacle.resetHealth(); // Reset health for each new monster encounter
-                    System.out.println("A new " + obstacle.getName() + " appears with " + obstacle.getHealth() + " health.");
+                    this.obstacle.resetHealth();
+                    System.out.println("A new " + obstacle.getName() + " appears with " + this.obstacle.getHealth() + " health.");
+                    System.out.println(monsterCount);
+                    System.out.println(this.obstacle.getHealth());
+                    System.out.println(this.getPlayer().getName());
 
-                    while (obstacle.getHealth() > 0 && getPlayer().getHealth() > 0) {
+                    while (this.obstacle.getHealth() > 0 && this.getPlayer().getHealth() > 0) {
                         // Player Attack
-                        obstacle.setHealth(obstacle.getHealth() - getPlayer().getDamage());
+                        this.obstacle.setHealth(obstacle.getHealth() - getPlayer().getDamage());
                         System.out.println("You attack! " + obstacle.getName() + " health is now " + obstacle.getHealth());
 
                         if (obstacle.getHealth() <= 0) {
@@ -51,7 +55,6 @@ public abstract class BattleLocation extends Location {
                             break;
                         }
 
-                        // Monster counter-attack
                         System.out.println(obstacle.getName() + " attacks you!");
                         getPlayer().setHealth(getPlayer().getHealth() - obstacle.getDamage());
                         System.out.println("Your remaining health: " + getPlayer().getHealth());
@@ -64,12 +67,21 @@ public abstract class BattleLocation extends Location {
                     }
                 }
                 if (getPlayer().getHealth() > 0 && monsterCount == 0) {
-                    System.out.println("You've defeated all the monsters!");
-                    getPlayer().getInventory().setFirewood(true); // Example reward
+                    System.out.println("You defeated all of the " + obstacle.getName() + "(s)!");
                     getPlayer().setMoney(getPlayer().getMoney() + (obstacle.getGold() * initialCount));
                     System.out.println("Gold earned: " + (obstacle.getGold() * initialCount));
+
+                    if (this.getName().equals("Forest")) {
+                        getPlayer().getInventory().setFirewood(true);
+                        System.out.println("You found some firewood!");
+                    } else if (this.getName().equals("Cave")) {
+                        getPlayer().getInventory().setFood(true);
+                        System.out.println("You found some food!");
+                    } else if (this.getName().equals("River")) {
+                        getPlayer().getInventory().setWater(true);
+                        System.out.println("You found some water!");
+                    }
                 }
-                break;
             case 2:
                 if (Math.random() < 0.5) {
                     System.out.println("You managed to escape!");

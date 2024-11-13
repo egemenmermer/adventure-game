@@ -78,7 +78,7 @@ public class Player {
         System.out.println("Please enter your name: ");
         this.name = scanner.nextLine();
 
-        Player chosenCharacter = null;
+        Player chosenCharacter;
 
         System.out.println("Choose a character:");
         System.out.println("1- Samurai, Damage: 5, Health: 21, Money: 15");
@@ -88,13 +88,13 @@ public class Player {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                chosenCharacter = new Samurai(this.inventory, 5, 21, 15, this.name ,"Samurai");
+                chosenCharacter = new Player(this.inventory, 5, 21, 15, this.name ,"Samurai");
                 break;
             case 2:
-                chosenCharacter = new Archer(this.inventory, 7, 18, 20, this.name, "Archer");
+                chosenCharacter = new Player(this.inventory, 7, 18, 20, this.name, "Archer");
                 break;
             case 3:
-                chosenCharacter = new Knight(this.inventory, 8, 24, 5, this.name, "Knight");
+                chosenCharacter = new Player(this.inventory, 8, 24, 5, this.name, "Knight");
                 break;
             default:
                 System.out.println("Invalid choice. Please select a valid character.");

@@ -1,13 +1,13 @@
 package location.monsters;
 
 public class Zombie extends Obstacle{
-    private int damage;
-    private int health;
-    private int gold;
+    private int damage = 3;
+    private int health = 10;
+    private int gold = 4;
 
 
     public Zombie(int damage, int health, int gold) {
-        super(health, damage, gold);
+        super(damage, health, gold);
     }
 
     @Override

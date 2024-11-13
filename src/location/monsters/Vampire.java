@@ -5,12 +5,12 @@ import player.Player;
 import java.util.Scanner;
 
 public class Vampire extends Obstacle{
-    private int damage;
-    private int health;
-    private int gold;
+    private int damage = 4;
+    private int health = 14;
+    private int gold = 7;
 
     public Vampire(int damage, int health, int gold) {
-        super(health, damage, gold);
+        super(damage, health, gold);
     }
     @Override
     public String getName(){

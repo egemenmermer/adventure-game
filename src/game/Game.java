@@ -59,20 +59,18 @@ public class Game {
                     int battleChoice = scanner.nextInt();
                     switch (battleChoice){
                         case 1:
+                            System.out.println("Creating Zombie obstacle...");
                             Obstacle zombie = new Zombie(3,10,4);
-                            BattleLocation cave = new Cave(player, "Cave", zombie );
+                            BattleLocation cave = new Cave(player, "Cave", zombie);
                             cave.onLocation();
-                            break;
                         case 2:
                             Obstacle vampire = new Vampire(4,14,7);
                             BattleLocation forest = new Forest(player, "Forest", vampire);
                             forest.onLocation();
-                            break;
                         case 3:
                             Obstacle bear  = new Bear(7,20,12);
                             BattleLocation river = new River(player, "River", bear);
                             river.onLocation();
-                            break;
                         case 4:
                             System.out.println("Returning to main menu...");
                             break;
